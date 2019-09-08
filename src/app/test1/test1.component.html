@@ -1,0 +1,89 @@
+<h2>News</h2>
+<!-- <input class="form-control" [(ngModel)] = "title" type="text">
+<input class="form-control" [(ngModel)] = "description" type="text">
+<input class="form-control" [(ngModel)] = "id" type="number">
+<input class="form-control" [(ngModel)] = "itemImageUrl" type="text"> -->
+<div class="row">
+  <button class="test-btn" (click)="generateNewCards()" [class.none]="id < 1">Generate Cards</button>
+  <p *ngIf="showMyMessage">Id not valid!</p>
+  <button class="test-btn-secondary" (click)="deleteCards()">Delete Cards</button>
+  <button class="like-btn" (click)="showLikes()">Show Likes <span *ngIf="showLikes()">{{showLikes()}}</span></button>
+</div>
+
+<div class="wrapper row">
+  <div class="card" *ngFor="let data of cardArray">
+    <span class="delete-btn" (click)="deleteThisCards(data)">x</span>
+    <div class="card-header">
+        <img src="{{itemImageUrl}}"/>
+      <h3 [title]="data.title" [class.red]="data.likeNum === max()" [class.blue]="data.likeNum === min()">
+        {{ data.title }}
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Description: {{ data.description }}
+      </p>
+      <span>
+        Id: {{ data.id }}
+      </span>
+    </div>
+    <div class="card-footer">
+      <div>
+        Like counter: {{ data.likeNum }}
+      </div>
+      <div class="btn-group">
+        <button class="like" (click)="add(data.id)">+</button>
+        <button class="dislike" (click)="reduce(data)">-</button>
+      </div>
+      <input class="form-control"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
+      <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
+      <p *ngFor="let comment of data.comments">
+          Name: {{ comment.name }}<br><br>
+        Comments: {{ comment.comment }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<section class="wrapper card">
+    <div class="card-header">
+        <hr>
+        <h2>Comment History</h2>
+        <hr>
+      </div>
+    <div class="Rtable Rtable--5cols Rtable--collapse card-body">
+      <div class="Rtable-row Rtable-row--head">
+        <div class="Rtable-cell name-cell column-heading">Name</div>
+        <div class="Rtable-cell comment-cell column-heading">Comment</div>
+        <div class="Rtable-cell comment-id-cell column-heading">Comment ID</div>
+        <div class="Rtable-cell history-id-cell column-heading">History ID</div>
+        <div class="Rtable-cell date-cell column-heading">Date</div>
+        <div class="Rtable-cell functions-cell column-heading">Functions</div>
+      </div>
+  
+      <div class="Rtable-row is-striped" *ngFor="let data of historyArray">
+        <div class="Rtable-cell name-cell">
+            <div class="Rtable-cell--content title-content">{{ data.comment.name }}</div>
+        </div>
+        <div class="Rtable-cell comment-cell">
+            <div class="Rtable-cell--content title-content">{{ data.comment.comment }}</div>
+        </div>
+        <div class="Rtable-cell comment-id-cell">
+            <div class="Rtable-cell--content title-content">{{ data.comment.id }}</div>
+        </div>
+        <div class="Rtable-cell history-id-cell">
+            <div class="Rtable-cell--content title-content">{{ data.historyId}}</div>
+        </div>
+        <div class="Rtable-cell date-cell">
+            <div class="Rtable-cell--content title-content">{{ data.date}}</div>
+        </div>
+        <div class="Rtable-cell functions-cell">
+            <div class="Rtable-cell--content title-content btn-group">
+                <button class="highlight-btn">Highlight</button>
+                <button class="delete" (click)="deleteItems()">Delete</button>
+            </div>
+        </div>
+       
+      </div>
+    </div>
+</section>
