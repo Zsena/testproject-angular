@@ -147,7 +147,7 @@ export class Test1Component implements OnInit {
   }
 
   public deleteItems(row: HistoryData) {
-    let commentId = this.historyArray[0].historyId;
+    let commentId = this.historyArray.findIndex(row => row.comment == this.cardArray[0].comments[0]);
     this.historyArray.splice(commentId, 1 );
   }
 
@@ -166,7 +166,7 @@ export class CommentData {
 }
 
 export class HistoryData {
-  constructor (public comment: CommentData, public historyId: number, public date: Date) {
+  constructor (public comment: CommentData, public cardId: number, public date: Date) {
 
   }
 }

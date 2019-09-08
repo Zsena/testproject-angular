@@ -56,7 +56,7 @@
         <div class="Rtable-cell name-cell column-heading">Name</div>
         <div class="Rtable-cell comment-cell column-heading">Comment</div>
         <div class="Rtable-cell comment-id-cell column-heading">Comment ID</div>
-        <div class="Rtable-cell history-id-cell column-heading">History ID</div>
+        <div class="Rtable-cell card-id-cell column-heading">Card ID</div>
         <div class="Rtable-cell date-cell column-heading">Date</div>
         <div class="Rtable-cell functions-cell column-heading">Functions</div>
       </div>
@@ -71,8 +71,8 @@
         <div class="Rtable-cell comment-id-cell">
             <div class="Rtable-cell--content title-content">{{ data.comment.id }}</div>
         </div>
-        <div class="Rtable-cell history-id-cell">
-            <div class="Rtable-cell--content title-content">{{ data.historyId}}</div>
+        <div class="Rtable-cell card-id-cell">
+            <div class="Rtable-cell--content title-content">{{ data.cardId}}</div>
         </div>
         <div class="Rtable-cell date-cell">
             <div class="Rtable-cell--content title-content">{{ data.date}}</div>
@@ -80,7 +80,7 @@
         <div class="Rtable-cell functions-cell">
             <div class="Rtable-cell--content title-content btn-group">
                 <button class="highlight-btn">Highlight</button>
-                <button class="delete" (click)="deleteItems()">Delete</button>
+                <button class="delete" (click)="deleteItems(data.id)">Delete</button>
             </div>
         </div>
        
