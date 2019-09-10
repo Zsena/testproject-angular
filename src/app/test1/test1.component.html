@@ -3,14 +3,14 @@
 <input class="form-control" [(ngModel)] = "description" type="text">
 <input class="form-control" [(ngModel)] = "id" type="number">
 <input class="form-control" [(ngModel)] = "itemImageUrl" type="text"> -->
-<div class="row">
+<div class="wrapper">
   <button class="test-btn" (click)="generateNewCards()" [class.none]="id < 1">Generate Cards</button>
   <p *ngIf="showMyMessage">Id not valid!</p>
   <button class="test-btn-secondary" (click)="deleteCards()">Delete Cards</button>
   <button class="like-btn" (click)="showLikes()">Show Likes <span *ngIf="showLikes()">{{showLikes()}}</span></button>
 </div>
 
-<div class="wrapper row">
+<div class="wrapper card-wrapper">
   <div class="card" *ngFor="let data of cardArray">
     <span class="delete-btn" (click)="deleteThisCards(data)">x</span>
     <div class="card-header">
@@ -50,6 +50,8 @@
         <hr>
         <h2>Comment History</h2>
         <hr>
+        <h3>Search Your Post</h3>
+        <input class="form-control" [(ngModel)] = "title" type="text">
       </div>
     <div class="Rtable Rtable--5cols Rtable--collapse card-body">
       <div class="Rtable-row Rtable-row--head">
@@ -86,4 +88,62 @@
        
       </div>
     </div>
+</section>
+
+<section class="facebook-message-board">
+  <div class="sidenav">
+      <a href="#profile">Profile</a>
+    <a href="#messages">Messages</a>
+    <a href="#friends">Friends</a>
+    <a href="#myapps">MyApps</a>
+  </div>
+  
+  <div class="main message-board">
+    <div class="wrapper card-wrapper">
+        <h2>Message Board</h2>
+        
+        <hr>
+        <div class="card" *ngFor="let data of posts">
+          <span class="delete-btn" (click)="deletePosts(data)">x</span>
+          <div class="card-header">
+            <h3 [title]="data.title">
+              {{ data.postTitle }}
+            </h3>
+          </div>
+          <div class="card-body">
+              <span>
+                  Id: {{ data.id }}
+              </span><br>
+              <span>
+                  Date: {{ data.created }}
+              </span>
+            <p>
+              Description: {{ data.text }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <div>
+              Like counter: {{ data.numLikes }}
+            </div>
+            <div>
+                Posted by: {{ data.name }}
+              </div>
+            <div class="btn-group">
+              <button class="like" (click)="add(data.id)">+</button>
+              <button class="dislike" (click)="reduce(data)">-</button>
+            </div>
+            <!-- <div class="row">
+                <div (click)="add(data.id)" class="comment-btn">Comment</div>
+                <div class="post-like-btn">like</div>
+            </div> -->
+            <input class="form-control hide"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
+            <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
+            <p *ngFor="let comment of data.comments">
+                Name: {{ comment.name }}<br><br>
+              Comments: {{ comment.comment }}
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
 </section>

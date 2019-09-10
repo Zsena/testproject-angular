@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
 import { parse } from 'url';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-test1',
@@ -23,8 +24,10 @@ export class Test1Component implements OnInit {
   public bool: boolean;
   public showMyMessage: boolean = false;
 
-  public historyArray: Array<HistoryData> = new Array<HistoryData>()
-  
+  public historyArray: Array<HistoryData> = new Array<HistoryData>();
+
+  public posts: Array<MessageBoard> = new Array<MessageBoard>();
+  public name: string = "Zsena";
 
   constructor() {
    
@@ -32,6 +35,7 @@ export class Test1Component implements OnInit {
 
   ngOnInit() {
     this.showCards(); // meghívom hogy alap esetben lefusson a function 
+    this.showPosts();
   }
 
   public onClick() : void {
@@ -147,8 +151,43 @@ export class Test1Component implements OnInit {
   }
 
   public deleteItems(row: HistoryData) {
-    let commentId = this.historyArray.findIndex(row => row.comment == this.cardArray[0].comments[0]);
+    let commentId = this.historyArray.findIndex(row => row.comment.id == this.cardArray.findIndex(card => card.id));
     this.historyArray.splice(commentId, 1 );
+  }
+
+  // MessageBoards functions
+
+  public showPosts() : void {
+    for( var i = 0; i < 6; i++) {
+      this.posts.push(new MessageBoard(this.randomLikeNumber(), new Date(), this.generateTitle(), this.generateName(), this.randomLikeNumber(), this.description ));
+    } 
+   }
+
+   public deletePosts(post2: MessageBoard) {
+    let index = this.posts.findIndex(post => post2.id == post.id);
+    this.posts.splice(index, 1);
+    this.showLikes();
+  }
+
+  public capFirst(string:string): string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  public getRandomInt(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  public generateTitle(): string {
+    let title1 = ["people","history","way","art","world","information","map","family","government","health","system","computer"];
+    let title2 = ["abandoned","able","absolute","adorable","adventurous","academic","acceptable","acclaimed","accomplished","accurate","aching","acidic","acrobatic","active","actual","adept"]
+    let title = this.capFirst(title1[this.getRandomInt(title1.length , 1)]) + '' + this.capFirst(title2[this.getRandomInt(title2.length , 1)]);
+    return title;
+  }
+
+  public generateName(): string {
+    let names = ["Zsena", "Oli", "Eszter", "Gábor", "Géza", "János"]
+    let name = this.capFirst(names[this.getRandomInt(names.length, 1)]);
+    return name;
   }
 
 }
@@ -166,7 +205,13 @@ export class CommentData {
 }
 
 export class HistoryData {
-  constructor (public comment: CommentData, public cardId: number, public date: Date) {
+  constructor (public comment: CommentData, public historyId: number, public date: Date) {
+
+  }
+}
+
+export class MessageBoard {
+  constructor (public id: number, public created: Date, public postTitle: string, public name: string, public numLikes: number, public text: string ) {
 
   }
 }
