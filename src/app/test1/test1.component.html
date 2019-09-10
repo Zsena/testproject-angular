@@ -50,8 +50,6 @@
         <hr>
         <h2>Comment History</h2>
         <hr>
-        <h3>Search Your Post</h3>
-        <input class="form-control" [(ngModel)] = "title" type="text">
       </div>
     <div class="Rtable Rtable--5cols Rtable--collapse card-body">
       <div class="Rtable-row Rtable-row--head">
@@ -101,9 +99,12 @@
   <div class="main message-board">
     <div class="wrapper card-wrapper">
         <h2>Message Board</h2>
-        
         <hr>
-        <div class="card" *ngFor="let data of posts">
+        <div class="form-group">
+            <input class="form-control search" type="text" placeholder="Search something..." [(ngModel)] = "search" (keydown.enter)="onKeySearch()">
+            <p *ngIf="searchMessage">No results matched your search! Please try again!</p>
+        </div>
+        <div class="card" *ngFor="let data of posts" [class.highlighted] = "data.isHighlighted">
           <span class="delete-btn" (click)="deletePosts(data)">x</span>
           <div class="card-header">
             <h3 [title]="data.title">

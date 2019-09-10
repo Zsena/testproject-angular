@@ -27,7 +27,7 @@ export class Test1Component implements OnInit {
   public historyArray: Array<HistoryData> = new Array<HistoryData>();
 
   public posts: Array<MessageBoard> = new Array<MessageBoard>();
-  public name: string = "Zsena";
+  public search: any = null;
 
   constructor() {
    
@@ -102,14 +102,14 @@ export class Test1Component implements OnInit {
     let comment: CommentData = new CommentData (card.name, card.input, this.randomLikeNumber());
 
     card.comments.push(comment); //onkey metódus, ami a comments array-be ami CommetData osztály a tipusa, hozzáad, felépít egy új CommentData objektumot, 
-                                                                  // ami kettő propertyt vár a kártyán lévő névinput és input //ezekkel azonosítom a html-be
+    // ami kettő propertyt vár a kártyán lévő névinput és input //ezekkel azonosítom a html-be
     card.input = null; //miután bepusholtam az adatokat utána nullázom a comment inputját
 
     this.historyArray.push(new HistoryData (comment, card.id, new Date()));
   }
  
   public findIndex(id:number):number { //id paraméter, aminek a típusa legyen szám
-    return this.cardArray.findIndex(card => card.id == id); //a cardról honnan tudja azt hogy ez itt most egy CardDetails lesz? -----
+    return this.cardArray.findIndex(card => card.id == id);
     /* for(let i = 0; i<this.cardArray.length; i++){ // ez ugyanaz mint a findIndex
       if(this.cardArray[i].id == id){
         return i;
@@ -197,6 +197,23 @@ export class Test1Component implements OnInit {
     return name;
   }
 
+  public messageBoardHighlighted(messageBoardData: MessageBoard) {
+   
+  }
+
+
+  public onKeySearch () {
+    let messageBoardId = this.posts.find(messageDatas => messageDatas.id == this.search);
+    let messageBoardName = this.posts.find(messageDatas => messageDatas.name == this.search);
+    
+    if(messageBoardId) {
+      messageBoardId.isHighlighted = !messageBoardId.isHighlighted;
+    }
+    if (messageBoardName) {
+      messageBoardName.isHighlighted = !messageBoardName.isHighlighted;
+    }
+  }
+
 }
 
 export class CardDetails {
@@ -218,7 +235,7 @@ export class HistoryData {
 }
 
 export class MessageBoard {
-  constructor (public id: number, public created: Date, public postTitle: string, public name: string, public numLikes: number, public text: string ) {
+  constructor (public id: number, public created: Date, public postTitle: string, public name: string, public numLikes: number, public text: string, public isHighlighted: boolean = false ) {
 
   }
 }

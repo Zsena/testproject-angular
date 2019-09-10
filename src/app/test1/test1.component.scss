@@ -231,10 +231,16 @@ hr {
 
 .facebook-message-board {
   .main.message-board {
+    .search {
+      width: 40%;
+    }
     .card {
       display: block;
       width: 50%;
       margin: 1.5rem 7rem;
+      &.highlighted {
+        background-color: $gold;
+      }
       .delete-btn {
         right: -30rem;
       }
