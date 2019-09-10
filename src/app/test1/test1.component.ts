@@ -150,9 +150,12 @@ export class Test1Component implements OnInit {
     this.showLikes();
   }
 
-  public deleteItems(row: HistoryData) {
-    let commentId = this.historyArray.findIndex(row => row.comment.id == this.cardArray.findIndex(card => card.id));
-    this.historyArray.splice(commentId, 1 );
+  public deleteItems(history: HistoryData): void {
+    let commentRow = this.historyArray.findIndex(historyCard => historyCard.comment.id == history.comment.id);
+    let card = this.cardArray.find(cardData => cardData.id == history.cardId);
+    let commentIndex = card.comments.findIndex(commentId => commentId.id == history.comment.id);
+    this.historyArray.splice(commentRow, 1);
+    card.comments.splice(commentIndex, 1);
   }
 
   // MessageBoards functions
@@ -205,7 +208,7 @@ export class CommentData {
 }
 
 export class HistoryData {
-  constructor (public comment: CommentData, public historyId: number, public date: Date) {
+  constructor (public comment: CommentData, public cardId: number, public date: Date) {
 
   }
 }
