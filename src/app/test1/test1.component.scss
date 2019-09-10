@@ -6,6 +6,11 @@ $btn-primary-bg-color: #4CAF50;
 $breakpoint: 750px;
 $heading-color: goldenrod;
 
+.highlighted {
+  background-color: $gold;
+  color: white;
+  padding: 10px;
+}
 
 .row {
   display: -ms-flexbox;

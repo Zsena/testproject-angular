@@ -158,6 +158,10 @@ export class Test1Component implements OnInit {
     card.comments.splice(commentIndex, 1);
   }
 
+  public highlight(history: HistoryData): void {
+    history.comment.isHighlighted = !history.comment.isHighlighted;
+  }
+
   // MessageBoards functions
 
   public showPosts() : void {

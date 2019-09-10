@@ -37,7 +37,7 @@
       </div>
       <input class="form-control"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
       <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
-      <p *ngFor="let comment of data.comments">
+      <p *ngFor="let comment of data.comments" [class.highlighted] = "comment.isHighlighted">
           Name: {{ comment.name }}<br><br>
         Comments: {{ comment.comment }}
       </p>
@@ -81,7 +81,7 @@
         </div>
         <div class="Rtable-cell functions-cell">
             <div class="Rtable-cell--content title-content btn-group">
-                <button class="highlight-btn">Highlight</button>
+                <button class="highlight-btn" (click)="highlight(data)">Highlight</button>
                 <button class="delete" (click)="deleteItems(data)">Delete</button>
             </div>
         </div>
