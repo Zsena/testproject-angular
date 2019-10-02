@@ -1,0 +1,67 @@
+@import '../../variables.scss';
+
+img {
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.form-control {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  margin: 2rem auto;
+  box-sizing: border-box;
+}
+
+.card {
+    border: 2px solid $gold;
+    padding: 2rem;
+    background-color: white;
+    width: 25%;
+    margin: 0.5rem;
+    border-radius: 5px;
+    float: right;
+    &:hover {
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    }
+    
+  .delete-btn {
+    position: relative;
+    right: -17rem;
+    top: -1rem;
+    color: $red;
+    border: 1px solid $red;
+    padding: 0px 6px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .card-footer {
+    display: inline;
+    .btn-group {
+      float: right;
+      color: white;
+      padding: 5px;
+      .like {
+        color: white;
+        margin: 2px;
+        border: none;
+        background-color: $like-color;
+      }
+      .dislike {
+        @extend .like;
+        background-color: $red;
+      }
+    }
+  }
+  .blue {
+    color: $like-color;
+  }
+  .red {
+    color: $red;
+  }
+}
+.none {
+  display: none;
+}

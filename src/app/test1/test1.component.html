@@ -1,94 +1,36 @@
-<h2>News</h2>
-<!-- <input class="form-control" [(ngModel)] = "title" type="text">
-<input class="form-control" [(ngModel)] = "description" type="text">
-<input class="form-control" [(ngModel)] = "id" type="number">
-<input class="form-control" [(ngModel)] = "itemImageUrl" type="text"> -->
+
 <div class="wrapper">
+  <h2>Profile</h2>
   <button class="test-btn" (click)="generateNewCards()" [class.none]="id < 1">Generate Cards</button>
-  <p *ngIf="showMyMessage">Id not valid!</p>
+  <!-- <p *ngIf="showMyMessage">Id not valid!</p> -->
   <button class="test-btn-secondary" (click)="deleteCards()">Delete Cards</button>
   <button class="like-btn" (click)="showLikes()">Show Likes <span *ngIf="showLikes()">{{showLikes()}}</span></button>
+  <section class="">
+      <div *ngFor="let data of cardArray">
+          <app-card [card]="data" (delete)="removeCard($event)" (push)="pushTable($event)"></app-card>
+      </div>
+  </section>
+  <section class="table-area">
+      <div class="card-header">
+          <hr>
+          <h2>Comment History</h2>
+          <hr>
+          <div class="head-table-row">
+              <div class="head-table-cell name-cell column-heading">Name</div>
+              <div class="head-table-cell comment-cell column-heading">Comment</div>
+              <div class="head-table-cell comment-id-cell column-heading">Comment ID</div>
+              <div class="head-table-cell card-id-cell column-heading">Card ID</div>
+              <div class="head-table-cell date-cell column-heading">Date</div>
+              <div class="head-table-cell functions-cell column-heading">Functions</div>
+          </div>
+      </div>
+      <div *ngFor="let data of historyArray">
+          <app-comment-history [historyTable]="data"></app-comment-history>
+      </div>
+  </section>
 </div>
 
-<div class="wrapper card-wrapper">
-  <div class="card" *ngFor="let data of cardArray">
-    <span class="delete-btn" (click)="deleteThisCards(data)">x</span>
-    <div class="card-header">
-        <img src="{{itemImageUrl}}"/>
-      <h3 [title]="data.title" [class.red]="data.likeNum === max()" [class.blue]="data.likeNum === min()">
-        {{ data.title }}
-      </h3>
-    </div>
-    <div class="card-body">
-      <p>
-        Description: {{ data.description }}
-      </p>
-      <span>
-        Id: {{ data.id }}
-      </span>
-    </div>
-    <div class="card-footer">
-      <div>
-        Like counter: {{ data.likeNum }}
-      </div>
-      <div class="btn-group">
-        <button class="like" (click)="add(data.id)">+</button>
-        <button class="dislike" (click)="reduce(data)">-</button>
-      </div>
-      <input class="form-control"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
-      <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
-      <p *ngFor="let comment of data.comments" [class.highlighted] = "comment.isHighlighted">
-          Name: {{ comment.name }}<br><br>
-        Comments: {{ comment.comment }}
-      </p>
-    </div>
-  </div>
-</div>
-
-<section class="wrapper card">
-    <div class="card-header">
-        <hr>
-        <h2>Comment History</h2>
-        <hr>
-      </div>
-    <div class="Rtable Rtable--5cols Rtable--collapse card-body">
-      <div class="Rtable-row Rtable-row--head">
-        <div class="Rtable-cell name-cell column-heading">Name</div>
-        <div class="Rtable-cell comment-cell column-heading">Comment</div>
-        <div class="Rtable-cell comment-id-cell column-heading">Comment ID</div>
-        <div class="Rtable-cell card-id-cell column-heading">Card ID</div>
-        <div class="Rtable-cell date-cell column-heading">Date</div>
-        <div class="Rtable-cell functions-cell column-heading">Functions</div>
-      </div>
-  
-      <div class="Rtable-row is-striped" *ngFor="let data of historyArray">
-        <div class="Rtable-cell name-cell">
-            <div class="Rtable-cell--content title-content">{{ data.comment.name }}</div>
-        </div>
-        <div class="Rtable-cell comment-cell">
-            <div class="Rtable-cell--content title-content">{{ data.comment.comment }}</div>
-        </div>
-        <div class="Rtable-cell comment-id-cell">
-            <div class="Rtable-cell--content title-content">{{ data.comment.id }}</div>
-        </div>
-        <div class="Rtable-cell card-id-cell">
-            <div class="Rtable-cell--content title-content">{{ data.cardId}}</div>
-        </div>
-        <div class="Rtable-cell date-cell">
-            <div class="Rtable-cell--content title-content">{{ data.date}}</div>
-        </div>
-        <div class="Rtable-cell functions-cell">
-            <div class="Rtable-cell--content title-content btn-group">
-                <button class="highlight-btn" (click)="highlight(data)">Highlight</button>
-                <button class="delete" (click)="deleteItems(data)">Delete</button>
-            </div>
-        </div>
-       
-      </div>
-    </div>
-</section>
-
-<section class="facebook-message-board">
+<!--<section class="facebook-message-board">
   <div class="sidenav">
       <a href="#profile">Profile</a>
     <a href="#messages">Messages</a>
@@ -102,8 +44,8 @@
         <hr>
         <div class="form-group">
             <input class="form-control search" type="text" placeholder="Search something..." [(ngModel)] = "search" (keydown.enter)="onKeySearch()">
-            <p *ngIf="searchMessage">No results matched your search! Please try again!</p>
-        </div>
+         <p *ngIf="searchMessage">No results matched your search! Please try again!</p>
+    </div>
         <div class="card" *ngFor="let data of posts" [class.highlighted] = "data.isHighlighted">
           <span class="delete-btn" (click)="deletePosts(data)">x</span>
           <div class="card-header">
@@ -133,11 +75,11 @@
               <button class="like" (click)="add(data.id)">+</button>
               <button class="dislike" (click)="reduce(data)">-</button>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div (click)="add(data.id)" class="comment-btn">Comment</div>
                 <div class="post-like-btn">like</div>
             </div> -->
-            <input class="form-control hide"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
+           <!--  <input class="form-control hide"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
             <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
             <p *ngFor="let comment of data.comments">
                 Name: {{ comment.name }}<br><br>
@@ -147,4 +89,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> --> 

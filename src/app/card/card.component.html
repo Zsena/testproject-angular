@@ -1,0 +1,25 @@
+  <div class="card">
+    <span class="delete-btn" (click)="callRemoveCard()">x</span>
+    <div class="card-header">
+      <img src="{{itemImageUrl}}"/>
+      <!-- <h3 [title]="card.title" [class.red]="card.likeNum === max()" [class.blue]="card.likeNum === min()">{{ card.title }}</h3> -->
+      <h3 [title]="card.title">{{ card.title }}</h3>
+    </div>
+    <div class="card-body">
+      <p>Description: {{ card.description }}</p>
+      <span>Id: {{ card.id }}</span>
+    </div>
+    <div class="card-footer">
+      <div>Like counter: {{ card.likeNum }}</div>
+      <div class="btn-group">
+        <button class="like" (click)="add()">+</button>
+        <button class="dislike" (click)="reduce()">-</button>
+      </div>
+      <input class="form-control"  [(ngModel)] = "card.name" (keydown.enter)="cardInputOnKey()" type="text">
+      <input class="form-control"  [(ngModel)] = "card.input" (keydown.enter)="cardInputOnKey()" type="text">
+      <p *ngFor="let comment of card.comments" [class.highlighted] = "comment.isHighlighted">
+          Name: {{ comment.name }}<br><br>
+        Comments: {{ comment.comment }}
+      </p>
+    </div>
+  </div>
