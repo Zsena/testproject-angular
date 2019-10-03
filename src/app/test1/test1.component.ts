@@ -50,20 +50,6 @@ export class Test1Component implements OnInit {
     this.cardArray.splice(this.cardArray.findIndex(card => card.id == id), 1);
   }
 
-  public onClick() : void {
-    /* let index = this.findIndex(this.id);
-    if(index != -1) {
-      this.showMessageSoon();
-    } else {
-      this.valueReader();
-    } 
-    this.randomLikeNumber(); */
-   }
-
-   /*  public valueReader() : void {
-    this.cardArray.push(new CardDetails(this.title, this.description, this.id, 0, null, []));
-  } */
-
   public showCards() : void { 
     for( var i = 0; i < 6; i++) {
       this.cardArray.push(new CardDetails(this.title, this.description, this.randomLikeNumber(),this.randomLikeNumber(), null, null, []));
@@ -90,8 +76,6 @@ export class Test1Component implements OnInit {
     return min;
   }
 
-  
-
   public showLikes(): number {
     let likes = 0;
     for( var i = 0; i < this.cardArray.length; i++) {
@@ -107,8 +91,6 @@ export class Test1Component implements OnInit {
   }
 
 
-
-   
    public generateNewCards(): void {
       this.cardArray.push(new CardDetails(this.title, this.description, this.randomLikeNumber(),this.randomLikeNumber(), null,  null, []));
       this.showLikes();
@@ -124,13 +106,6 @@ export class Test1Component implements OnInit {
     this.showLikes();
   }
 
-  /* public showMessageSoon (): void {
-    setTimeout(() => {
-      this.showMyMessage = true
-    }, 3000)
-  } */
-
-  
   public deleteItems(history: HistoryData): void {
     let commentRow = this.historyArray.findIndex(historyCard => historyCard.comment.id == history.comment.id);
     let card = this.cardArray.find(cardData => cardData.id == history.cardId);
@@ -140,6 +115,7 @@ export class Test1Component implements OnInit {
   }
 
   public highlight(history: HistoryData): void {
+    console.log(history);
     history.comment.isHighlighted = !history.comment.isHighlighted;
   }
 

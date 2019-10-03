@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { Test1Component } from './test1/test1.component';
 import { CardComponent } from './card/card.component';
 import { CommentHistoryComponent } from './comment-history/comment-history.component';
+import { MessageBoardComponent } from './message-board/message-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Test1Component,
     CardComponent,
-    CommentHistoryComponent
+    CommentHistoryComponent,
+    MessageBoardComponent
   ],
   imports: [
     BrowserModule,

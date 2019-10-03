@@ -1,24 +1,24 @@
 <div class="table-body table-collapse">
     <div class="table-row is-striped">
         <div class="table-cell name-cell">
-            <div class="table-cell--content title-content">{{ historyTable.comment.name }}</div>
+            <div class="table-cell--content title-content">{{ historyTableData.comment.name }}</div>
         </div>
         <div class="table-cell comment-cell">
-            <div class="table-cell--content title-content">{{ historyTable.comment.comment }}</div>
+            <div class="table-cell--content title-content">{{ historyTableData.comment.comment }}</div>
         </div>
         <div class="table-cell comment-id-cell">
-            <div class="table-cell--content title-content">{{ historyTable.comment.id }}</div>
+            <div class="table-cell--content title-content">{{ historyTableData.comment.id }}</div>
         </div>
         <div class="table-cell card-id-cell">
-            <div class="table-cell--content title-content">{{ historyTable.cardId}}</div>
+            <div class="table-cell--content title-content">{{ historyTableData.cardId}}</div>
         </div>
         <div class="table-cell date-cell">
-            <div class="table-cell--content title-content">{{ historyTable.date}}</div>
+            <div class="table-cell--content title-content">{{ historyTableData.date}}</div>
         </div>
         <div class="table-cell functions-cell">
             <div class="table-cell--content title-content btn-group">
-                <button class="highlight-btn" (click)="highlight(data)">Highlight</button>
-                <button class="delete" (click)="deleteItems(data)">Delete</button>
+                <button class="highlight-btn" (click)="callHighlight()">Highlight</button>
+                <button class="delete" (click)="callDeleteRow()">Delete</button>
             </div>
         </div>
     </div>

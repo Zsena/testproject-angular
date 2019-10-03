@@ -1,5 +1,15 @@
 @import '../../variables.scss';
 
+/* Table column sizing
+================================== */
+.name-cell  { width: 15%; }
+.comment-cell  { width: 25%; }
+.comment-id-cell  { width: 12%; }
+.card-id-cell  { width: 13%; }
+.date-cell  { width: 20%; }
+.functions-cell  { width: 15%; }
+
+
 .table-body {
     flex-wrap: wrap;
     margin: 0 0 3em 0;

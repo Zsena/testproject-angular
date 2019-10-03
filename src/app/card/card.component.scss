@@ -1,5 +1,11 @@
 @import '../../variables.scss';
 
+.highlighted {
+  background-color: $gold;
+  color: white;
+  padding: 10px;
+}
+
 img {
   width: 100%;
   display: block;

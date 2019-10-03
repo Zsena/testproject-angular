@@ -1,0 +1,60 @@
+<!--<section class="facebook-message-board">
+  <div class="sidenav">
+      <a href="#profile">Profile</a>
+    <a href="#messages">Messages</a>
+    <a href="#friends">Friends</a>
+    <a href="#myapps">MyApps</a>
+  </div>
+  
+  <div class="main message-board">
+    <div class="wrapper card-wrapper">
+        <h2>Message Board</h2>
+        <hr>
+        <div class="form-group">
+            <input class="form-control search" type="text" placeholder="Search something..." [(ngModel)] = "search" (keydown.enter)="onKeySearch()">
+         <p *ngIf="searchMessage">No results matched your search! Please try again!</p>
+    </div>
+        <div class="card" *ngFor="let data of posts" [class.highlighted] = "data.isHighlighted">
+          <span class="delete-btn" (click)="deletePosts(data)">x</span>
+          <div class="card-header">
+            <h3 [title]="data.title">
+              {{ data.postTitle }}
+            </h3>
+          </div>
+          <div class="card-body">
+              <span>
+                  Id: {{ data.id }}
+              </span><br>
+              <span>
+                  Date: {{ data.created }}
+              </span>
+            <p>
+              Description: {{ data.text }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <div>
+              Like counter: {{ data.numLikes }}
+            </div>
+            <div>
+                Posted by: {{ data.name }}
+              </div>
+            <div class="btn-group">
+              <button class="like" (click)="add(data.id)">+</button>
+              <button class="dislike" (click)="reduce(data)">-</button>
+            </div>
+            <div class="row">
+                <div (click)="add(data.id)" class="comment-btn">Comment</div>
+                <div class="post-like-btn">like</div>
+            </div> -->
+           <!--  <input class="form-control hide"  [(ngModel)] = "data.name" (keydown.enter)="onKey(data)" type="text">
+            <input class="form-control"  [(ngModel)] = "data.input" (keydown.enter)="onKey(data)" type="text">
+            <p *ngFor="let comment of data.comments">
+                Name: {{ comment.name }}<br><br>
+              Comments: {{ comment.comment }}
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section> --> 
