@@ -1,0 +1,25 @@
+<div class="table-body table-collapse">
+    <div class="table-row is-striped">
+        <div class="table-cell name-cell">
+            <div class="table-cell--content title-content">{{ historyTableData.comment.name }}</div>
+        </div>
+        <div class="table-cell comment-cell">
+            <div class="table-cell--content title-content">{{ historyTableData.comment.comment }}</div>
+        </div>
+        <div class="table-cell comment-id-cell">
+            <div class="table-cell--content title-content">{{ historyTableData.comment.id }}</div>
+        </div>
+        <div class="table-cell card-id-cell">
+            <div class="table-cell--content title-content">{{ historyTableData.cardId}}</div>
+        </div>
+        <div class="table-cell date-cell">
+            <div class="table-cell--content title-content">{{ historyTableData.date}}</div>
+        </div>
+        <div class="table-cell functions-cell">
+            <div class="table-cell--content title-content btn-group">
+                <button class="highlight-btn" (click)="callHighlight()">Highlight</button>
+                <button class="delete" (click)="callDeleteRow()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>    

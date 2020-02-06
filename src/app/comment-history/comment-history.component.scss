@@ -1,0 +1,128 @@
+@import '../../variables.scss';
+
+/* Table column sizing
+================================== */
+.name-cell  { width: 15%; }
+.comment-cell  { width: 25%; }
+.comment-id-cell  { width: 12%; }
+.card-id-cell  { width: 13%; }
+.date-cell  { width: 20%; }
+.functions-cell  { width: 15%; }
+
+
+.table-body {
+    flex-wrap: wrap;
+    margin: 0 0 3em 0;
+    padding: 0;
+    box-shadow: 0 0 40px rgba(0,0,0,0.2);
+    
+    .table-row {
+      width: 100%;
+      display: flex;
+      background-color: white;
+      &:hover {
+        background-color: #333;
+        color: white;
+      }
+      
+      .table-cell {
+        box-sizing: border-box;
+        flex-grow: 1;
+        padding: 0.8em 1.2em;
+        overflow: hidden; // Or flex might break
+        list-style: none;
+  
+        &.column-heading {
+          background-color: $heading-color;
+          color: white;
+          padding: 1em;
+          text-transform: uppercase;
+        }
+  
+        .table-cell--heading {
+          display: none;
+        }
+  
+        .table-cell--content {
+          a {
+            font-size: 2em;
+            color: #333;
+          }
+          
+          .webinar-date {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+    .delete {
+      color: white;
+      background-color: $red;
+      padding: 5px;
+      width: 100%;
+      border: 0;
+    }
+  
+    .highlight-btn {
+      color: white;
+      background-color: $gold;
+      padding: 5px;
+      width: 100%;
+      border: 0;
+    }
+  }
+
+  /* Responsive
+==================================== */
+@media all and (max-width: $breakpoint) {
+    .is-striped {
+      background-color: $gold;
+    }
+    
+    .table-collapse {
+      display: block;
+      width: 100%;
+      padding: 1em;
+      box-shadow: none;
+      
+      .table-row {
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2em;
+        box-shadow: 0 0 40px rgba(0,0,0,0.2);
+        
+        .table-cell {
+          width: 100% !important;
+          display: flex;
+          align-items: center;
+  
+          .table-cell--heading {
+            display: inline-block;
+            flex: 1;
+            max-width: 120px;
+            min-width: 120px;
+            color: $heading-color;
+            font-weight: 700;
+            border-right: 1px solid #ccc;
+            margin-right: 1em;
+          }
+  
+          .table-cell--content {
+            flex: 2;
+            padding-left: 1em;
+          }
+        }
+      }
+    }
+  }
+  
+  // Non-Flex modernizer fallback
+  .no-flexbox .table-area {
+    display: block;
+    
+    &.table-cell {
+      width: 100%;
+    }
+  }
